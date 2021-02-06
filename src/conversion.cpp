@@ -22,7 +22,7 @@ extern bool RCPP_OCTAVE_VERBOSE;
 	Rprintf("Integer value - int8: %i | int16: %i | int32: %i | int64: %i | int: %i\n", \
 		val.is_int8_type(), val.is_int16_type() \
 		, val.is_int32_type(), val.is_int64_type() \
-		, val.is_integer_type());
+		, val.isinteger());
 
 #define WRAP_ERROR(err) RcppOctave_error("wrap", err);
 
@@ -131,7 +131,7 @@ SEXP wrap(const Cell& x, bool simplify = true){
 	VERBOSE_LOG("wrap<Cell[%i]>", n);
 
 	// treat string Cell objects differently
-	if(  x.is_cellstr() ){
+	if(  x.iscellstr() ){
 		VERBOSE_LOG(" -> CharacterVector\n");
 		Rcpp::CharacterVector res(n);
 		for(int i=0; i<n; i++){
@@ -177,7 +177,7 @@ SEXP wrap(const Cell& x, bool simplify = true){
 template <> SEXP Rcpp::wrap( const octave_value& val){
 
 	VERBOSE_LOG("wrap<%s>", val.type_name().c_str());
-	if( val.is_null_value() ){
+	if( val.isnull() ){
 
 		VERBOSE_LOG("null_value");
 		return R_NilValue;
@@ -211,16 +211,16 @@ template <> SEXP Rcpp::wrap( const octave_value& val){
 				res[i] = m.row_as_string(i);
 			return res;
 		}
-		else if ( val.is_bool_type() ){
+		else if ( val.islogical() ){
 
 			VERBOSE_LOG("(boolMatrix) -> LogicalMatrix");
 			return wrapArray<LGLSXP>(val.bool_matrix_value());
 
-		}else if( val.is_int32_type() || val.is_int64_type() || val.is_int16_type() || val.is_integer_type() ){
+		}else if( val.is_int32_type() || val.is_int64_type() || val.is_int16_type() || val.isinteger() ){
 
 			return ::wrap(static_cast<oct_intArray>(val.int32_array_value()));
 
-		}else if( val.is_real_type() ){
+		}else if( val.isreal() ){
 			return ::wrap(val.matrix_value());
 		}else{
 
@@ -247,12 +247,12 @@ template <> SEXP Rcpp::wrap( const octave_value& val){
 			return wrap(val.bool_value());
 
 		}
-		else if ( val.is_integer_type() ){
+		else if ( val.isinteger() ){
 
 			VERBOSE_LOG("(int_value)\n");
 			return wrap(val.int_value());
 
-		}else if( val.is_real_type() ){
+		}else if( val.isreal() ){
 
 			VERBOSE_LOG("(double_value)\n");
 			return wrap(val.double_value());
@@ -267,7 +267,7 @@ template <> SEXP Rcpp::wrap( const octave_value& val){
 
 		return R_NilValue;
 
-	} else if( val.is_map() ){ // Maps are converted into lists
+	} else if( val.isstruct() ){ // Maps are converted into lists
 
 		VERBOSE_LOG("(map) -> ");
 
@@ -304,7 +304,7 @@ template <> SEXP Rcpp::wrap( const octave_value& val){
 		VERBOSE_LOG("(cs_list) => List\n");
 		return wrap<octave_value_list>(val.list_value());
 
-	} else if( val.is_cell() ){// Cell objects are used for character vectors
+	} else if( val.iscell() ){// Cell objects are used for character vectors
 
 		return( ::wrap(val.cell_value()) );
 

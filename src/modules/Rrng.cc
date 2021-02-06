@@ -160,7 +160,7 @@ if( nargs <= iarg_row ){\
 		k = iv(1);\
 	}else{\
 		n = long(args(iarg_row).double_value());\
-		k = ( nargs > iarg_col && !args(iarg_col).is_empty() ? long(args(iarg_col).double_value()) : n);\
+		k = ( nargs > iarg_col && !args(iarg_col).isempty() ? long(args(iarg_col).double_value()) : n);\
 	}\
 }\
 Matrix X(n, k);
@@ -235,7 +235,7 @@ RCPP_OCTAVE_HELP_NOTE)
 
   // retrieve shape and scale parameters
   double shape = args(0).double_value();
-  double scale(nArgs >= 4 && !args(3).is_empty() ? args(3).double_value() : 1);
+  double scale(nArgs >= 4 && !args(3).isempty() ? args(3).double_value() : 1);
 
   RAND_RESULT(Rf_rgamma(shape, scale))\
 }

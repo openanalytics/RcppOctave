@@ -366,7 +366,7 @@ SEXP octave_feval(SEXP fname, SEXP args, SEXP output = R_NilValue, SEXP unlist =
 	}
 
 	// special case of no result
-	if( out.is_empty() ){
+	if( out.isempty() ){
 		return R_NilValue;
 	}
 
@@ -380,7 +380,7 @@ SEXP octave_feval(SEXP fname, SEXP args, SEXP output = R_NilValue, SEXP unlist =
 				return Rcpp::wrap(ol(0));
 			}
 
-		}else if( out.is_map() ){ // named list
+		}else if( out.isstruct() ){ // named list
 
 			OCTAVE_MAP m = out.map_value();
 			if (m.nfields() == 1){
