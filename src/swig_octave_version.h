@@ -7,7 +7,7 @@
 
 #define octave_config_h
 // The above define disables this header in octave >= v4.3.0+
-#include <octave/config.h>
+#include <octave/oct.h>
 #undef octave_config_h
 
 #include <octave/version.h>
