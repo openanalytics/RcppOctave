@@ -450,7 +450,7 @@ int getOutnames(const string& fname, std::vector<string>& onames){
 	tree_parameter_list::iterator rlp = rl->begin();
 	for(int i=0; rlp != rl->end(); rlp++)
 	{
-		tree_identifier *rid = (*rlp)->ident();
+		octave::tree_identifier *rid = (*rlp)->ident();
 		if (rid)
 		{
 			// retrieve the variable names
