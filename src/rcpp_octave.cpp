@@ -539,7 +539,7 @@ octave_value octave_feval(const string& fname, const octave_value_list& args, in
 		VERBOSE_LOG("octave_feval - Calling feval now ... ");
 		// catch stderr if requested
 		redirect.redirect();
-		octave_value_list out = feval(fname, args, nres);
+		octave_value_list out = octave::feval(fname, args, nres);
 		if ( !error_state ){
 
 			redirect.flush();
