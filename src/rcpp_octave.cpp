@@ -487,7 +487,7 @@ octave_value octave_feval(const string& fname, const octave_value_list& args, in
 		//XXX FIXME XXX
 		unwind_protect::run_all ();
 	#endif
-		raw_mode(0);
+		octave::raw_mode(0);
 		Rprintf("\n");
 		octave_restore_signal_mask();
 #endif
