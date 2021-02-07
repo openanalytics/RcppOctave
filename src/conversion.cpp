@@ -468,8 +468,10 @@ template <> octave_value Rcpp::as( SEXP x ){
 		if ( na == 0) {
 
 			VERBOSE_LOG("(un-named List) -> Cell\n");
-			const octave_value& ol = as<octave_value_list>(x);
-			return Cell(ol);
+			const octave_value_list& ovl = as<octave_value_list>(x);
+			return Cell(ovl);
+			// const octave_value& ol = as<octave_value_list>(x);
+			// return Cell(ol);
 
 		}else{ // store as an Octave map
 			VERBOSE_LOG("(named List[%i]) -> Octave map:\n", Rf_length(x));
