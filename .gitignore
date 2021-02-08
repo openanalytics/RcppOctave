@@ -4,3 +4,16 @@
 # Example code in package build process
 *-Ex.R
 .Rproj.user
+
+*.o
+*.so
+*.oct
+
+R/config-vars.R
+
+src/Makevars
+src/symbols.rds
+src/modules/Makefile
+
+config.log
+config.status
