@@ -423,7 +423,7 @@ int getOutnames(const string& fname, std::vector<string>& onames){
 #else
 	// Lookup this name in the symbol tables
 	octave::symbol_table sym_table;
-	octave_value fdef = sym_table.find_function(fname);
+	octave_value fdef = sym_table.find_function(fname); 
 	onames.clear();
 
 	VERBOSE_LOG("octave_feval - Check if `%s` has an internal symbol table ... ", fname.c_str());
