@@ -171,16 +171,17 @@ bool octave_session(bool start=true, bool with_warnings = true, bool verbose = f
 #if SWIG_OCTAVE_PREREQ(4,3,0)
 		// v4.3.0+
 		// the_app setup here is just to get a valid load path for octave
-		the_app = new octave::cli_application(narg, cmd_args.c_str_vec());
-		the_app->create_interpreter();
-		the_app->interactive(false);
-		int return_code = the_app->initialize_interpreter(); // setup, but don't execute
+//		the_app = new octave::cli_application(narg, cmd_args.c_str_vec());
+//		the_app->create_interpreter();
+//		the_app->interactive(false);
+//		int return_code = the_app->initialize_interpreter(); // setup, but don't execute
 
 		// The following is performed in octave_main for a static variable that resides in
 		// liboctinterp.so. The same setup with a pointer here does not work, yet.
 		// embedded_interpreter = new octave::interpreter(the_app);
 		// embedded_interpreter->interactive(false);
 	        // embedded_interpreter->execute ();
+		int status;
 		octave::interpreter intrprtr;
 		status = intrprtr.execute ();
 #else
