@@ -559,12 +559,12 @@ octave_value octave_feval(const string& fname, const octave_value_list& args, in
 
 			// directly return the result if no output names are available
 			if( onames.size() == 0 ){
-				return out;
+				return octave_value(out);
 			}else{ // return the result as a map
 				int n = onames.size();
 				if( n != out.length() ){
 					warning("Dropping names due to inconsistent lengths");
-					return out;
+					return octave_value(out);
 				}
 
 				VERBOSE_LOG("octave_feval - Set output name(s):");
@@ -618,7 +618,7 @@ octave_value octave_feval(const string& fname, const octave_value_list& args, in
 	// throw an R error
 	redirect.flush(err.str().c_str(), true);
 
-	return octave_value_list();
+	return octave_value(octave_value_list());
 }
 
 /** Returns the help string from an Octave object. */
