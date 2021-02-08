@@ -319,7 +319,9 @@ extern void recover_from_exception_rcppoct(void)
 #else
   octave::can_interrupt = true;
 #endif
-  // octave_interrupt_immediately = 0;
+#if !SWIG_OCTAVE_PREREQ(4,4,0) // version < 4.4.0
+  octave_interrupt_immediately = 0;
+#endif  
   octave_interrupt_state = 0;
   octave_signal_caught = 0;
   octave_exception_state = octave_no_exception;
