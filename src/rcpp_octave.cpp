@@ -220,7 +220,8 @@ bool octave_session(bool start=true, bool with_warnings = true, bool verbose = f
 		octave_exit = 0;
 #endif
 		try {
-			clean_up_and_exit(0, true);
+			octave_quit();
+			// clean_up_and_exit(0, true);
 		}
 #if SWIG_OCTAVE_PREREQ(4,2,0)
 		catch (const octave::exit_exception& ex)
