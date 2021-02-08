@@ -483,21 +483,21 @@ octave_value octave_feval(const string& fname, const octave_value_list& args, in
 	Vlast_prompt_time.stamp();
 
 	octave_save_signal_mask();
-	if (octave_set_current_context) {
-#if defined (USE_EXCEPTIONS_FOR_INTERRUPTS)
-		panic_impossible()
-#else
-	//#if OCTAVE_API_VERSION_NUMBER >= 45
-	#if SWIG_OCTAVE_PREREQ(3,4,0)
-	#else
-		//XXX FIXME XXX
-		unwind_protect::run_all ();
-	#endif
-		octave::raw_mode(0);
-		Rprintf("\n");
-		octave_restore_signal_mask();
-#endif
-	}
+//	if (octave_set_current_context) {
+//#if defined (USE_EXCEPTIONS_FOR_INTERRUPTS)
+//		panic_impossible()
+//#else
+//	//#if OCTAVE_API_VERSION_NUMBER >= 45
+//	#if SWIG_OCTAVE_PREREQ(3,4,0)
+//	#else
+//		//XXX FIXME XXX
+//		unwind_protect::run_all ();
+//	#endif
+//		octave::raw_mode(0);
+//		Rprintf("\n");
+//		octave_restore_signal_mask();
+//#endif
+//	}
 
 #if !SWIG_OCTAVE_PREREQ(4,2,0) // version < 4.2.0
 	can_interrupt = true;
