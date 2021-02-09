@@ -164,7 +164,7 @@ bool octave_session(bool start=true, bool with_warnings = true, bool verbose = f
 		cmd_args(3) = std::string("--no-history");
 
 		// redirect both stderr and stdout
-		Redirect redirect(7);
+
 
 		// try starting Octave
 #if SWIG_OCTAVE_PREREQ(4,2,0)
@@ -184,11 +184,13 @@ bool octave_session(bool start=true, bool with_warnings = true, bool verbose = f
 		int status;
 		static octave::interpreter intrprtr;
 		status = intrprtr.execute ();
+		Redirect redirect(7);
 #else
 		// v4.2.1
 		octave::cmdline_options opts(narg, cmd_args.c_str_vec());
 		the_app = new octave::embedded_application(opts);
 		int return_code = the_app->execute();
+		Redirect redirect(7);
 #endif
 #else
 		int return_code = octave_main(narg, cmd_args.c_str_vec(), true /*embedded*/);
