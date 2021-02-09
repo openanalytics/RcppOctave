@@ -182,7 +182,7 @@ bool octave_session(bool start=true, bool with_warnings = true, bool verbose = f
 		// embedded_interpreter->interactive(false);
 	        // embedded_interpreter->execute ();
 		int status;
-		octave::interpreter intrprtr;
+		static octave::interpreter intrprtr;
 		status = intrprtr.execute ();
 #else
 		// v4.2.1
@@ -348,10 +348,10 @@ SEXP octave_feval(SEXP fname, SEXP args, SEXP output = R_NilValue, SEXP unlist =
 	// update static UUID if necessary
 	if( !Rf_isNull(uuid) ){
 		string newUUID = Rcpp::as<string>(uuid);
-		if( _UUID != newUUID ){
+		/*if( _UUID != newUUID ){
 			_UUID = Rcpp::as<string>(uuid);
 			octave_feval("octave_uuid", Rcpp::as<octave_value>(uuid));
-		}
+		}*/
 	}
 	VERBOSE_LOG("octave_feval - UUID: %s\n", _UUID.c_str());
 
