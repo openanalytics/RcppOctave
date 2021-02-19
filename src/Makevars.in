@@ -16,7 +16,7 @@ RSCRIPT_BIN="$(R_HOME)/bin$(R_ARCH_BIN)/Rscript$(RSCRIPT_ARG)"
 # Octave module target
 OCT_TARGET=@OCT_TARGET@
 
-# System-specific statments (e.g., overrides)
+# System-specific statements (e.g., overrides)
 @SYSTEM_SPEC@
 
 ## Use the R_HOME indirection to support installations of multiple R version
