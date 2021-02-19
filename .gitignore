@@ -9,11 +9,15 @@
 *.so
 *.oct
 
-R/config-vars.R
+RcppOctave/R/config-vars.R
 
-src/Makevars
-src/symbols.rds
-src/modules/Makefile
+RcppOctave/src/Makevars
+RcppOctave/src/symbols.rds
+RcppOctave/src/modules/Makefile
 
-config.log
-config.status
+RcppOctave/config.log
+RcppOctave/config.status
+
+/.project
+/pkg.Rproj
+/RcppOctave_*.tar.gz
