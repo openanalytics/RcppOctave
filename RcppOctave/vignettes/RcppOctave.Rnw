@@ -420,8 +420,10 @@ try( .O$myvar )
 
 \subsubsection{Calling functions}
 As illustrated above, \octave functions can be called through the
-\code{.O} object, by passing specifying its arguments as a function call:
+\code{.O} object, by passing its arguments as a function call:
 <<O_object_function_call>>=
+# load the statistics package to access poisspdf
+o_eval("pkg load statistics")
 # density of x=5 for Poisson(2)
 .O$poisspdf(5, 2)
 # E.g. compare with R own function
