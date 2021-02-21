@@ -326,7 +326,7 @@ extern void recover_from_exception_rcppoct(void)
 #endif  
   octave_interrupt_state = 0;
   octave_signal_caught = 0;
-  octave_exception_state = octave_no_exception;
+  // octave_exception_state = octave_no_exception;
   // prior to 3.2.0
   // octave_allocation_error = 0;
   octave_restore_signal_mask ();
@@ -425,7 +425,7 @@ int getOutnames(const string& fname, std::vector<string>& onames){
 #else
 	// Lookup this name in the symbol tables
 	octave::symbol_table sym_table;
-	octave_value fdef = sym_table.find_function(fname); 
+	octave_value fdef = sym_table.find_function(fname);
 	onames.clear();
 
 	VERBOSE_LOG("octave_feval - Check if `%s` has an internal symbol table ... ", fname.c_str());
@@ -518,7 +518,7 @@ octave_value octave_feval(const string& fname, const octave_value_list& args, in
 
 	try {
 
-		reset_error_handler();
+		// reset_error_handler();
 
 		// extract the output names
 		std::vector<string> autonames;
@@ -548,7 +548,8 @@ octave_value octave_feval(const string& fname, const octave_value_list& args, in
 		// catch stderr if requested
 		redirect.redirect();
 		octave_value_list out = octave::feval(fname, args, nres);
-		if ( !error_state ){
+
+		// if ( !error_state ){ // error_state
 
 			redirect.flush();
 
@@ -584,10 +585,10 @@ octave_value octave_feval(const string& fname, const octave_value_list& args, in
 				VERBOSE_LOG("\n");
 				return octave_value(m);
 			}
-		} else {
-			VERBOSE_LOG("ERROR\n");
-			VERBOSE_LOG(R_PACKAGE_NAME" - error in Octave function `%s`.\n", fname.c_str());
-		}
+		// } else {
+		//	VERBOSE_LOG("ERROR\n");
+		//	VERBOSE_LOG(R_PACKAGE_NAME" - error in Octave function `%s`.\n", fname.c_str());
+		// }
 	} catch	(
 #if !SWIG_OCTAVE_PREREQ(4,2,0) // version < 4.2.0
 			octave_interrupt_exception
@@ -611,7 +612,7 @@ octave_value octave_feval(const string& fname, const octave_value_list& args, in
 	catch(const octave::execution_exception& e)
 	{
 		REprintf(R_PACKAGE_NAME" - Octave error: execution_exception\n");
-		if(!e.info().empty()) err << " (" << e.info() << ")";
+		// if(!e.info().empty()) err << " (" << e.info() << ")";
 		recover_from_exception_rcppoct();
 	}
 #endif

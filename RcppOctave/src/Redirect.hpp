@@ -110,7 +110,7 @@ template <> inline std::streamsize Octave_Rstreambuf<true>::xsputn(const char *s
 template <> inline std::streamsize Octave_Rstreambuf<false>::xsputn(const char *s, std::streamsize n ){
 
 	//detect warning/error
-	if( strstr(s, "error: ") == s || error_state ){
+	if( strstr(s, "error: ") == s){ // || error_state ){
 		// flush possible previous usage messages
 		dump_usage(true);
 
