@@ -128,7 +128,7 @@ test.list <- function(){
 			, list(matrix(1:10, 2,5), matrix(1:10, 5, 2), matrix(c(TRUE, FALSE), 2,5))
 	)
 	
-	check.conversion(t, "Unamed lists")
+	check.conversion(t, "Unnamed lists")
 	t <- t[-1]
 	
 	tn <- lapply(t, function(x){ names(x) <- letters[1:length(x)]; x} )	
