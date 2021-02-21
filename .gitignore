@@ -21,3 +21,4 @@ RcppOctave/config.status
 /.project
 /pkg.Rproj
 /RcppOctave_*.tar.gz
+/RcppOctave.Rcheck/
